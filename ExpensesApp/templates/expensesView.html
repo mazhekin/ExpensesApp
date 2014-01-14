@@ -1,0 +1,39 @@
+﻿<div>
+    
+    <div>
+        <a href="#/newexpense">Add New Expense</a>
+    </div>
+    
+    <div class="progress progress-striped active" data-ng-show="isBusy">
+        <div class="progress-bar" style="width:100%"></div>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <select 
+                    ng-model="selectedCategoryId" 
+                    ng-init="selectedCategoryId=0" 
+                    ng-change="selectedCategoryChange()">
+                    <option value="0">{no filter}</option>
+                    <option ng-repeat="cat in data.categories" value="{{cat.id}}">
+                        {{cat.name}}
+                    </option>
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td>Amount</td><td>Date</td><td>Category</td><td>Comment</td>
+        </tr>
+        <tr data-ng-repeat="item in data.expenses">
+            <td>{{ item.amount | currency }}</td>
+            <td>{{ item.created | date:"medium" }}</td>
+            <td>{{ item.category.name }}</td>
+            <td>{{ item.comment }}</td>
+        </tr>
+    </table>    
+
+</div>

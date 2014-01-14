@@ -1,0 +1,28 @@
+﻿<h2>New Expense</h2>
+<p>
+    <form name="newExpenseForm" novalidate data-ng-submit="save()">
+        <fieldset>
+            <div>
+                <label for="amount">Amount</label>
+                <input name="amount" type="text" data-ng-model="newExpense.amount" format="number" required />
+                <span class="error" data-ng-show="newExpenseForm.amount.$error.required">*</span>
+            </div>
+            <div>
+                <label for="categoryId">Category</label>
+                <select name="categoryId"
+                    data-ng-model="newExpense.categoryId" 
+                    ng-options="p.id as p.name for p in data.categories | orderBy: 'name'" required>
+                </select>
+                <span class="error" data-ng-show="newExpenseForm.categoryId.$error.required">*</span>
+            </div>
+            <div>
+                <label for="comment">Comment</label>
+                <textarea name="comment" rows="5" cols="30" data-ng-model="newExpense.comment" />
+            </div>
+            <div>
+                <input type="submit" class="btn" value="Save" data-ng-disabled="newExpenseForm.$invalid"/>
+                <a href="#/" class="btn">Cancel</a>
+            </div>
+        </fieldset>
+    </form>
+</p>

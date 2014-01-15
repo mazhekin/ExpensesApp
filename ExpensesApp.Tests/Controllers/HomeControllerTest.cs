@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ExpensesApp;
 using ExpensesApp.Controllers;
+using MvcContrib.TestHelper;
 
 namespace ExpensesApp.Tests.Controllers
 {
@@ -13,42 +14,42 @@ namespace ExpensesApp.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void Index_Get_Returns_Default_View()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index();
 
             // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            Assert.AreEqual(result.ShouldBe<ViewResult>(null).ViewName, "");
         }
 
         [TestMethod]
-        public void About()
+        public void About_Get_Returns_Default_View()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            var result = controller.About();
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual(result.ShouldBe<ViewResult>(null).ViewName, "");
         }
 
         [TestMethod]
-        public void Contact()
+        public void Contact_Get_Returns_Default_View()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            var result = controller.Contact() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual(result.ShouldBe<ViewResult>(null).ViewName, "");
         }
     }
 }
